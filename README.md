@@ -81,7 +81,7 @@ You must configure Webots to use the Python interpreter from your new virtual en
 
 1. Open the desired world file (`.wbt`) in Webots.
 2. In the Scene Tree (left panel), select your robot node.
-3. Ensure the `controller` field is set to the correct Python script (e.g., `echoarm_controller`).
+3. Ensure the `controller` field is set to the correct Python script (e.g., `echoarm`).
 4. Click **Reload** (or press `Ctrl+R`) and then **Play** to start the simulation.
 
 Depending on which world you open:
