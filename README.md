@@ -18,7 +18,7 @@ This guide explains how to configure the necessary Python environment and run th
 
    ```bash
    git clone https://github.com/andrebellu/echoarm.git
-   cd YOUR_PROJECT_NAME
+   cd echoarm
    ```
 
 2. **Create the Virtual Environment (`venv`)**
