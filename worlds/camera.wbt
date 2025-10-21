@@ -1,0 +1,58 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Wall.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/humans/pedestrian/protos/Pedestrian.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/universal_robots/protos/UR5e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/factory/containers/protos/WoodenBox.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.2800921253028526 -0.3254630167836794 0.9031180576477239 4.683025242580302
+  position -0.33449130888381273 6.536975350074074 5.585577104548406
+}
+RectangleArena {
+  floorSize 5 5
+}
+Pedestrian {
+  translation -1.48202 0.0704689 1.27
+  shirtColor 0.278431 0.290196 0.286275
+}
+Wall {
+  translation 1.86615 -2.87716e-06 1.77636e-15
+  size 0.7 0.5 1
+}
+Robot {
+  translation 1.96059 0.0227517 1
+  rotation 0 0 1 3.14159
+  children [
+    UR5e {
+    }
+    Camera {
+      translation 0.8 0 0
+      children [
+        WoodenBox {
+          translation 0.04 0 0.21
+          size 0.01 0.01 0.01
+        }
+      ]
+      fieldOfView 1.25
+      width 640
+      height 480
+    }
+  ]
+  name "camera_test"
+  controller "camera"
+}
+TexturedBackground {
+  texture "empty_office"
+}
+TexturedBackgroundLight {
+}
+DirectionalLight {
+  direction 3 0 1
+  intensity 5
+}

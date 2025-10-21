@@ -1,0 +1,107 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.09941795295405943 -0.04287125962508759 0.9941217861653486 4.0716905661923946
+  position 2.3608775688883106 3.1851771305625207 1.6901838632530362
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Robot {
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0 0 0.46
+      }
+      device [
+        PositionSensor {
+          name "base_arm_joint_sensor"
+        }
+        RotationalMotor {
+          name "base_arm_joint"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.46
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0.26 0 0.385
+            }
+            device [
+              RotationalMotor {
+                name "arm_joint"
+              }
+              PositionSensor {
+                name "arm_joint_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.26 0 0.385
+              rotation 1 0 0 0
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    metalness 0
+                  }
+                  geometry Mesh {
+                    url [
+                      "../protos/meshes/lower_elbow_0.stl"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+          Shape {
+            appearance PBRAppearance {
+              metalness 0
+            }
+            geometry Mesh {
+              url [
+                "../protos/meshes/upper_elbow_1_1.stl"
+              ]
+            }
+          }
+        ]
+        name "upper_arm"
+        boundingObject Shape {
+          geometry Mesh {
+            url [
+              "../protos/meshes/upper_elbow_1_1.stl"
+            ]
+          }
+        }
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "../protos/meshes/base_link.stl"
+        ]
+      }
+    }
+  ]
+  name "echoarm"
+  boundingObject Box {
+    size 0.1 0.1 0.01
+  }
+  physics Physics {
+  }
+  controller "echoarm"
+}
+RectangleArena {
+  floorSize 3 3
+}
