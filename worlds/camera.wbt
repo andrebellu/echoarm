@@ -11,15 +11,15 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2800921253028526 -0.3254630167836794 0.9031180576477239 4.683025242580302
-  position -0.33449130888381273 6.536975350074074 5.585577104548406
+  orientation 0.14064830835969327 0.04337635539947727 -0.9891089652549991 2.5494365886262673
+  position 5.407372566526968 4.501327469725663 1.9412144786273497
 }
 RectangleArena {
   floorSize 5 5
 }
 Pedestrian {
-  translation -1.48202 0.0704689 1.27
-  shirtColor 0.278431 0.290196 0.286275
+  translation -1.71202 0.0704689 1.27
+  shirtColor 1 0.11989 0
 }
 Wall {
   translation 1.86615 -2.87716e-06 1.77636e-15
@@ -29,6 +29,12 @@ Robot {
   translation 1.96059 0.0227517 1
   rotation 0 0 1 3.14159
   children [
+    RangeFinder {
+      translation 0.87 0 0.21
+      width 640
+      height 480
+      maxRange 20
+    }
     UR5e {
     }
     Camera {
@@ -53,6 +59,6 @@ TexturedBackground {
 TexturedBackgroundLight {
 }
 DirectionalLight {
-  direction 3 0 1
+  direction 6 0 5
   intensity 5
 }
