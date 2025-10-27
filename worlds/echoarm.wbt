@@ -7,101 +7,138 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.09941795295405943 -0.04287125962508759 0.9941217861653486 4.0716905661923946
-  position 2.3608775688883106 3.1851771305625207 1.6901838632530362
+  orientation -0.02287043098270337 -0.03161514056907576 0.9992384231370725 4.560987903840317
+  position 0.3704958439041568 2.4237242914117116 0.8885984811723177
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
+RectangleArena {
+  floorSize 3 3
+}
 Robot {
+  translation -3.3103e-21 -1.10812e-20 0
+  rotation -0.44720363370936067 0.8944072674187058 0.006674577570729636 2.440423725800646e-18
   children [
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        axis 0 0 1
-        anchor 0 0 0.46
-      }
-      device [
-        PositionSensor {
-          name "base_arm_joint_sensor"
-        }
-        RotationalMotor {
-          name "base_arm_joint"
-        }
-      ]
-      endPoint Solid {
-        translation 0 0 0.46
-        children [
-          HingeJoint {
-            jointParameters HingeJointParameters {
-              anchor 0.26 0 0.385
-            }
-            device [
-              RotationalMotor {
-                name "arm_joint"
+    Solid {
+      children [
+        Solid {
+          translation 0 0 0.395
+          children [
+            SliderJoint {
+              jointParameters JointParameters {
+                minStop 0.12
+                maxStop 0.12
               }
-              PositionSensor {
-                name "arm_joint_sensor"
-              }
-            ]
-            endPoint Solid {
-              translation 0.26 0 0.385
-              rotation 1 0 0 0
-              children [
-                Shape {
-                  appearance PBRAppearance {
-                    metalness 0
-                  }
-                  geometry Mesh {
-                    url [
-                      "../protos/meshes/lower_elbow_0.stl"
-                    ]
-                  }
+              device [
+                PositionSensor {
+                  name "slider_piston_base_sensor"
+                }
+                LinearMotor {
+                  name "slider_piston_base"
+                  maxForce 30
                 }
               ]
+              endPoint Solid {
+                translation 0 0 0.03
+                children [
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0 0 1
+                      anchor 0 0 0.26
+                    }
+                    device [
+                      PositionSensor {
+                        name "piston_elbow_sensor"
+                      }
+                      RotationalMotor {
+                        name "piston_elbow_motor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0 0 0.26
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.980392 0.980392 0.847059
+                            metalness 0
+                          }
+                          geometry Mesh {
+                            url [
+                              "../protos/meshes/echoarm/4elbow_base.stl"
+                            ]
+                          }
+                        }
+                      ]
+                      name "elbow"
+                      boundingObject Mesh {
+                        url [
+                          "../protos/meshes/echoarm/4elbow_base.stl"
+                        ]
+                      }
+                    }
+                  }
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.776471 1 0.956863
+                      metalness 0
+                    }
+                    geometry Mesh {
+                      url [
+                        "../protos/meshes/echoarm/3piston_base.stl"
+                      ]
+                    }
+                  }
+                ]
+                name "piston_base"
+                boundingObject Mesh {
+                  url [
+                    "../protos/meshes/echoarm/3piston_base.stl"
+                  ]
+                }
+              }
             }
-          }
-          Shape {
-            appearance PBRAppearance {
-              metalness 0
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+                metalness 0
+              }
+              geometry Mesh {
+                url [
+                  "../protos/meshes/echoarm/2base_box.stl"
+                ]
+              }
             }
-            geometry Mesh {
-              url [
-                "../protos/meshes/upper_elbow_1_1.stl"
-              ]
-            }
-          }
-        ]
-        name "upper_arm"
-        boundingObject Shape {
-          geometry Mesh {
+          ]
+          name "base_box"
+          boundingObject Mesh {
             url [
-              "../protos/meshes/upper_elbow_1_1.stl"
+              "../protos/meshes/echoarm/2base_box.stl"
             ]
           }
         }
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.980392 0.980392 0.847059
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "../protos/meshes/echoarm/1base.stl"
+            ]
+          }
+        }
+      ]
+      name "Base"
+      boundingObject Box {
+        size 1 1 0.005
       }
-    }
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0 0 0
-        metalness 0
-      }
-      geometry Mesh {
-        url [
-          "../protos/meshes/base_link.stl"
-        ]
+      physics Physics {
       }
     }
   ]
-  name "echoarm"
-  boundingObject Box {
-    size 0.1 0.1 0.01
-  }
   physics Physics {
   }
   controller "echoarm"
-}
-RectangleArena {
-  floorSize 3 3
 }
