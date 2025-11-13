@@ -7,11 +7,11 @@ pose = mp_pose.Pose(static_image_mode=True, model_complexity=1, min_detection_co
 mp_drawing = mp.solutions.drawing_utils
 
 try:
-    frame_bgr = cv2.imread("persona_reale.jpg")
+    frame_bgr = cv2.imread("test2.png")
     if frame_bgr is None:
         print("ERRORE: Impossibile caricare 'persona_reale.jpg'. Assicurati che sia nella cartella giusta.")
     else:
-        print("Immagine 'persona_reale.jpg' caricata con successo.")
+        print("Immagine 'test2.png' caricata con successo.")
         
         frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
         

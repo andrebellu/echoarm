@@ -7,19 +7,20 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.02287043098270337 -0.03161514056907576 0.9992384231370725 4.560987903840317
-  position 0.3704958439041568 2.4237242914117116 0.8885984811723177
+  orientation 0.04735006900739271 -0.8140357184332536 0.5788815250807816 5.947258981413083
+  position -3.728827243773324 0.7783462397296587 1.2985483394693131
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
-  floorSize 3 3
+  floorSize 1.5 1.5
+  floorTileSize 1 1
 }
 Robot {
-  translation -3.3103e-21 -1.10812e-20 0
-  rotation -0.44720363370936067 0.8944072674187058 0.006674577570729636 2.440423725800646e-18
+  translation -7.391538271298344e-21 -6.447803873638253e-21 0.00015391923197353397
+  rotation -0.970727174780174 0.2401746579750109 0.002210386818682905 6.415086376633721e-18
   children [
     Solid {
       children [
@@ -28,6 +29,7 @@ Robot {
           children [
             SliderJoint {
               jointParameters JointParameters {
+                position 0.049280000000000004
                 minStop 0.12
                 maxStop 0.12
               }
@@ -41,10 +43,11 @@ Robot {
                 }
               ]
               endPoint Solid {
-                translation 0 0 0.03
+                translation 0 0 0.07928
                 children [
                   HingeJoint {
                     jointParameters HingeJointParameters {
+                      position 0.5017600000000006
                       axis 0 0 1
                       anchor 0 0 0.26
                     }
@@ -58,7 +61,136 @@ Robot {
                     ]
                     endPoint Solid {
                       translation 0 0 0.26
+                      rotation 0 0 1 0.5017600000000004
                       children [
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            anchor 0.265 0 0.38
+                          }
+                          device [
+                            PositionSensor {
+                              name "elbow_sensor"
+                            }
+                            RotationalMotor {
+                              name "elbow_motor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.265 0 0.38
+                            rotation 0 1 0 1.5708003061004252
+                            children [
+                              HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  axis 0 1 0
+                                  anchor 0 0 0.425
+                                }
+                                device [
+                                  PositionSensor {
+                                    name "lower_arm_sensor"
+                                  }
+                                  RotationalMotor {
+                                    name "lower_arm_motor"
+                                  }
+                                ]
+                                endPoint Solid {
+                                  translation 0 -0.14 0.425
+                                  rotation 0 1 0 0
+                                  children [
+                                    HingeJoint {
+                                      jointParameters HingeJointParameters {
+                                        axis 0 1 0
+                                        anchor 0 0.14 0.8
+                                      }
+                                      device [
+                                        PositionSensor {
+                                          name "upper_arm_box_sensor"
+                                        }
+                                        RotationalMotor {
+                                          name "upper_arm_box_motor"
+                                        }
+                                      ]
+                                      endPoint Solid {
+                                        translation 0 0.14 0.8
+                                        rotation 0 1 0 0
+                                        children [
+                                          HingeJoint {
+                                            jointParameters HingeJointParameters {
+                                              axis 0 1 0
+                                              anchor 0 0 0.47
+                                            }
+                                            device [
+                                              RotationalMotor {
+                                                name "upper_arm_motor"
+                                              }
+                                              PositionSensor {
+                                                name "upper_arm_sensor"
+                                              }
+                                            ]
+                                            endPoint Solid {
+                                              translation 0 -0.14 0.47
+                                              rotation 0 1 0 0
+                                              children [
+                                                Shape {
+                                                  appearance PBRAppearance {
+                                                    baseColor 0 0 0
+                                                    metalness 0
+                                                  }
+                                                  geometry Mesh {
+                                                    url [
+                                                      "../protos/meshes/echoarm/8upper_arm.stl"
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                          Shape {
+                                            appearance PBRAppearance {
+                                              baseColor 0.447059 0.447059 0.447059
+                                              metalness 0
+                                            }
+                                            geometry Mesh {
+                                              url [
+                                                "../protos/meshes/echoarm/7upper_arm_box.stl"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                    Shape {
+                                      appearance PBRAppearance {
+                                        baseColor 0 0 0
+                                        metalness 0
+                                      }
+                                      geometry Mesh {
+                                        url [
+                                          "../protos/meshes/echoarm/6lower_arm.stl"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                              Shape {
+                                appearance PBRAppearance {
+                                  baseColor 0.447059 0.447059 0.447059
+                                  metalness 0
+                                }
+                                geometry Mesh {
+                                  url [
+                                    "../protos/meshes/echoarm/5elbow_box.stl"
+                                  ]
+                                }
+                              }
+                            ]
+                            boundingObject Mesh {
+                              url [
+                                "../protos/meshes/echoarm/5elbow_box.stl"
+                              ]
+                            }
+                          }
+                        }
                         Shape {
                           appearance PBRAppearance {
                             baseColor 0.980392 0.980392 0.847059
@@ -141,4 +273,39 @@ Robot {
   physics Physics {
   }
   controller "echoarm"
+}
+Robot {
+  translation 0 -0.7 0.05
+  children [
+    SliderJoint {
+      jointParameters JointParameters {
+        axis 1 0 0
+      }
+      device [
+        PositionSensor {
+          name "sensor"
+        }
+        LinearMotor {
+          name "motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.1
+        children [
+          Shape {
+            geometry Sphere {
+              radius 0.1
+            }
+          }
+        ]
+      }
+    }
+    Shape {
+      geometry Box {
+        size 1.5 0.1 0.1
+      }
+    }
+  ]
+  name "robot(1)"
+  controller "my_controller"
 }
