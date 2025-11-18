@@ -10,8 +10,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.49055361734835773 -0.09709265736118831 -0.8659850832393038 3.4810875412181224
-  position 3.4625704236381942 -1.857922443262695 7.5016962957091256
+  orientation 0.3607522706782137 -0.23655994823429158 -0.9021625075849151 4.210002386087936
+  position 2.0062933820879696 -4.733414376714427 4.954788769217946
 }
 TexturedBackground {
 }
@@ -111,6 +111,9 @@ Floor {
 Robot {
   translation -0.03 -0.37 3.45
   children [
+    Emitter {
+      channel 1
+    }
     SpotLight {
       attenuation 0 0 1
       beamWidth 0.2
@@ -142,7 +145,7 @@ Robot {
   name "camera"
   controller "camera"
 }
-Transform {
+Pose {
   translation 1.65291e-06 -0.45 0.94
   rotation 0 0 1 1.5708
   children [
@@ -152,4 +155,51 @@ Transform {
       ]
     }
   ]
+}
+Robot {
+  translation 0 -0.88 0.74
+  children [
+    Receiver {
+      channel 1
+    }
+    SliderJoint {
+      jointParameters JointParameters {
+        position 0.6786666666666666
+        axis 1 0 0
+        minStop -0.8
+        maxStop 0.8
+      }
+      device [
+        LinearMotor {
+          name "slider_piston_base"
+          maxVelocity 5
+          minPosition -0.8
+          maxPosition 0.8
+        }
+      ]
+      endPoint Solid {
+        translation 0.6786666666666666 0 0.07
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.05
+            }
+          }
+        ]
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 1.9 0.15 0.05
+      }
+    }
+  ]
+  name "echoarm"
+  controller "slider_test"
 }
