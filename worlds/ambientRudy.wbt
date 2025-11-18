@@ -5,13 +5,25 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Ceiling.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/hospital/protos/EmergencyExitSign.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/PaintedWood.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/humans/pedestrian/protos/Pedestrian.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/hospital/protos/Curtain.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/tables/protos/Table.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/chairs/protos/OfficeChair.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/DesktopComputer.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/Monitor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/Keyboard.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/ComputerMouse.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/telephone/protos/OfficeTelephone.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Roughcast.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/lights/protos/DoubleFluorescentLamp.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Door.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.22337604936432168 -0.03271037540170878 -0.97418333588266 3.424979580416564
-  position 7.006179614143944 -2.39224390675885 3.642500365626772
+  orientation 0.20144047497225315 -0.03493069881964512 -0.9788777152039595 3.477884357868542
+  position 5.113569678322214 -1.5423817398668025 2.6883377858709654
 }
 TexturedBackground {
 }
@@ -20,15 +32,43 @@ TexturedBackgroundLight {
 }
 Ceiling {
   translation 0 0 5
+  appearance Roughcast {
+    colorOverride 0.413382 0.417441 0.417441
+    textureTransform TextureTransform {
+      scale 10 10
+    }
+  }
+}
+DoubleFluorescentLamp {
+  translation -1.16 -1.36539 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+}
+DoubleFluorescentLamp {
+  translation -1.16 -0.486124 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(2)"
+}
+DoubleFluorescentLamp {
+  translation -1.16 -0.913773 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(3)"
+}
+DoubleFluorescentLamp {
+  translation -1.16 -0.0776447 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(4)"
+}
+DoubleFluorescentLamp {
+  translation -1.16 0.290508 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(1)"
 }
 DEF Muro1 Solid {
   translation 0 4.75 2.5
   children [
     Shape {
-      appearance Appearance {
-        material Material {
-          emissiveColor 1 1 1
-        }
+      appearance PaintedWood {
+        colorOverride 0.74464 0.862104 1
       }
       geometry Box {
         size 10 0.5 5
@@ -47,15 +87,20 @@ DEF Muro1 Solid {
     }
   }
 }
+Door {
+  hidden translation_5 0.0010710394270502244 2.2278111943607737e-05 1.1102230246251565e-16
+  hidden rotation_5 0 0 -1 0.00014955318208720845
+  translation -0.821541 4.65491 1.31955e-13
+  rotation 0 0 1 -1.5707953071795862
+  position -0.00014955318112956862
+}
 DEF Muro2 Solid {
   translation -5 0 2.5
   rotation -1.32199e-06 -1.33159e-06 1 1.57081
   children [
     Shape {
-      appearance Appearance {
-        material Material {
-          emissiveColor 1 1 1
-        }
+      appearance PaintedWood {
+        colorOverride 0.74464 0.862104 1
       }
       geometry Box {
         size 10 0.5 5
@@ -74,6 +119,13 @@ DEF Muro2 Solid {
       size 10 0.5 5
     }
   }
+}
+Curtain {
+  translation -4.5 0.0849122 1.5
+}
+Curtain {
+  translation -4.49596 -1.35865 1.5
+  name "curtain(1)"
 }
 Solid {
   translation 0 0 -0.13
@@ -104,9 +156,78 @@ EmergencyExitSign {
 }
 Floor {
   tileSize 2 1
-  appearance Parquetry {
-    type "light strip"
+  appearance PaintedWood {
   }
+}
+OfficeChair {
+  hidden position_0_0 -0.0005128529746025734
+  hidden rotation_1 0 0 -1 0.0005370319715814618
+  translation 1.0820200701886982 3.0703800396854852 -0.0014151210821931604
+  rotation 0.0006822119728205362 -0.002627624256937989 0.999996315082005 0.5236008446653562
+  name "office chair(2)"
+}
+Monitor {
+  translation 2.00601 4.24785 0.75
+  rotation 0 0 -1 1.8326
+}
+DesktopComputer {
+  translation 1.02629 4.20872 0.75
+  rotation 0 0 1 -1.5707953071795862
+}
+OfficeChair {
+  hidden position_0_0 -0.0005128529745919153
+  hidden rotation_1 0 0 -1 0.0005370319715814618
+  translation 2.2924499305371824 2.9694500409427396 -0.0014151210821932991
+  rotation 0.0007011440657349999 -0.00019372934291656584 0.9999997354329354 2.617990134483714
+}
+OfficeChair {
+  hidden position_0_0 -0.000512852974595468
+  hidden rotation_1 0 0 -1 0.0005370319715814618
+  translation 3.417460000725429 3.0895200806279397 -0.0014151210821931326
+  rotation 0.0006971436042097399 -0.000708070112890033 0.9999995063136333 1.5708004958857862
+  name "office chair(1)"
+}
+Table {
+  translation 3.11466 3.98761 2.98877e-14
+  rotation 0 0 1 1.5708
+  name "table(1)"
+}
+OfficeTelephone {
+  translation 2.4404468142547877 4.153977819696193 0.7431581799091483
+  rotation 0.000722356116841884 -0.00013678301303439815 -0.9999997297459874 1.5707961019411782
+}
+Monitor {
+  translation 1.53481 4.30841 0.75
+  rotation 0 0 1 -1.5707953071795862
+  name "monitor(1)"
+}
+Table {
+  translation 1.32302 3.98419 3.01541e-14
+  rotation 0 0 1 1.5708
+}
+ComputerMouse {
+  translation 1.8874000000000002 3.9672700000000005 0.739960766074487
+  rotation -2.3934994600850677e-06 -1.836602551706969e-06 0.9999999999954491 1.3090000000043964
+}
+Keyboard {
+  translation 1.54008 4.01052 0.75
+  rotation 0 0 1 -1.5707953071795862
+}
+Pedestrian {
+  translation 0.655132 0.656032 1.27
+  rotation 0 0 1 -2.094395307179586
+  name "doctor"
+  shirtColor 0.291752 0.598627 0.655756
+  pantsColor 0.219608 0.407965 0.525383
+  shoesColor 0 0 0
+}
+Pedestrian {
+  translation -0.323096 -0.454139 0.87
+  rotation 0 1 0 -1.5707953071795862
+  name "patient"
+  shirtColor 1 0.861448 0
+  pantsColor 0 0 0
+  shoesColor 0.975723 1 0.979568
 }
 Robot {
   translation -0.03 -0.37 3.45
@@ -164,6 +285,7 @@ Robot {
     }
     SliderJoint {
       jointParameters JointParameters {
+        position -0.8
         axis 1 0 0
         minStop -0.8
         maxStop 0.8
@@ -177,7 +299,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0 0.07
+        translation -0.8 0 0.07
         children [
           Shape {
             appearance PBRAppearance {
