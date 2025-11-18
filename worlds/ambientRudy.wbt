@@ -1,0 +1,204 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Ceiling.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/hospital/protos/EmergencyExitSign.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.22337604936432168 -0.03271037540170878 -0.97418333588266 3.424979580416564
+  position 7.006179614143944 -2.39224390675885 3.642500365626772
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+  texture "noon_cloudy_empty"
+}
+Ceiling {
+  translation 0 0 5
+}
+DEF Muro1 Solid {
+  translation 0 4.75 2.5
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          emissiveColor 1 1 1
+        }
+      }
+      geometry Box {
+        size 10 0.5 5
+      }
+    }
+  ]
+  boundingObject Shape {
+    appearance Appearance {
+      material Material {
+        ambientIntensity 0.7
+        emissiveColor 0.7 0.7 0
+      }
+    }
+    geometry Box {
+      size 10 0.5 5
+    }
+  }
+}
+DEF Muro2 Solid {
+  translation -5 0 2.5
+  rotation -1.32199e-06 -1.33159e-06 1 1.57081
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          emissiveColor 1 1 1
+        }
+      }
+      geometry Box {
+        size 10 0.5 5
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject Shape {
+    appearance Appearance {
+      material Material {
+        ambientIntensity 0.7
+        emissiveColor 0.7 0.7 0
+      }
+    }
+    geometry Box {
+      size 10 0.5 5
+    }
+  }
+}
+Solid {
+  translation 0 0 -0.13
+  children [
+    Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "../protos/meshes/lettino.stl"
+        ]
+      }
+    }
+  ]
+  name "bed"
+  boundingObject Shape {
+    geometry Mesh {
+      url [
+        "../protos/meshes/lettino.stl"
+      ]
+    }
+  }
+}
+EmergencyExitSign {
+  translation 0 4.39 2.23
+  rotation 1 0 0 1.5708
+}
+Floor {
+  tileSize 2 1
+  appearance Parquetry {
+    type "light strip"
+  }
+}
+Robot {
+  translation -0.03 -0.37 3.45
+  children [
+    Emitter {
+      channel 1
+    }
+    SpotLight {
+      attenuation 0 0 1
+      beamWidth 0.2
+      cutOffAngle 0.4
+      direction 0 0 -2
+      intensity 5
+    }
+    Camera {
+      translation -8.87054e-07 -4.61711e-06 0.87
+      rotation 0.7071072811853203 1.8797507474938104e-06 -0.7071062811849226 -3.1415853071795863
+      children [
+        RangeFinder {
+          fieldOfView 1
+          width 640
+          height 480
+          maxRange 15
+        }
+      ]
+      fieldOfView 1
+      width 640
+      height 480
+    }
+    Solid {
+      boundingObject Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  name "camera"
+  controller "camera"
+}
+Pose {
+  translation 1.65291e-06 -0.45 0.94
+  rotation 0 0 1 1.5708
+  children [
+    CadShape {
+      url [
+        "../../../../Downloads/male-base-mesh-with-muscle-detail/source/lp muscle/lp muscle.obj"
+      ]
+    }
+  ]
+}
+Robot {
+  translation 0 -0.88 0.74
+  children [
+    Receiver {
+      channel 1
+    }
+    SliderJoint {
+      jointParameters JointParameters {
+        axis 1 0 0
+        minStop -0.8
+        maxStop 0.8
+      }
+      device [
+        LinearMotor {
+          name "slider_piston_base"
+          maxVelocity 5
+          minPosition -0.8
+          maxPosition 0.8
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.07
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.05
+            }
+          }
+        ]
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 1.9 0.15 0.05
+      }
+    }
+  ]
+  name "echoarm"
+  controller "slider_test"
+}
