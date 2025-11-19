@@ -18,12 +18,14 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Roughcast.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/lights/protos/DoubleFluorescentLamp.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Door.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/tables/protos/Desk.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/WallPlug.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.20144047497225315 -0.03493069881964512 -0.9788777152039595 3.477884357868542
-  position 5.113569678322214 -1.5423817398668025 2.6883377858709654
+  orientation 0.49915889611668557 -0.12612719771536063 -0.8572819410345945 3.5682353243969422
+  position 4.810856501378932 -1.0588651654183665 9.035155227372346
 }
 TexturedBackground {
 }
@@ -59,9 +61,64 @@ DoubleFluorescentLamp {
   name "double fuorescent lamp(4)"
 }
 DoubleFluorescentLamp {
-  translation -1.16 0.290508 5
+  translation -1.14678 0.659562 5
   rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
   name "double fuorescent lamp(1)"
+}
+DoubleFluorescentLamp {
+  translation -1.16 0.290508 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(10)"
+}
+DoubleFluorescentLamp {
+  translation 0.146758 0.304231 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(5)"
+}
+DoubleFluorescentLamp {
+  translation 0.15573 0.654182 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(11)"
+}
+DoubleFluorescentLamp {
+  translation 0.156641 -0.0586537 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(6)"
+}
+DoubleFluorescentLamp {
+  translation 0.133204 -0.474366 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(7)"
+}
+DoubleFluorescentLamp {
+  translation 0.122865 -1.34918 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(8)"
+}
+DoubleFluorescentLamp {
+  translation 1.47876 -0.902935 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(12)"
+}
+DoubleFluorescentLamp {
+  translation 1.4616 -0.0619357 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(14)"
+}
+DoubleFluorescentLamp {
+  translation 1.4616 0.298492 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(16)"
+}
+DoubleFluorescentLamp {
+  translation 1.4616 -0.465272 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(15)"
+}
+DoubleFluorescentLamp {
+  translation 0.146897 -0.91586 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(9)"
 }
 DEF Muro1 Solid {
   translation 0 4.75 2.5
@@ -88,11 +145,11 @@ DEF Muro1 Solid {
   }
 }
 Door {
-  hidden translation_5 0.0010710394270502244 2.2278111943607737e-05 1.1102230246251565e-16
-  hidden rotation_5 0 0 -1 0.00014955318208720845
+  hidden translation_5 0.0014973458164631304 0.0001557236322052291 9.992007221626409e-16
+  hidden rotation_5 0 0 -1 0.0010468721255437261
   translation -0.821541 4.65491 1.31955e-13
   rotation 0 0 1 -1.5707953071795862
-  position -0.00014955318112956862
+  position -0.001046872125634301
 }
 DEF Muro2 Solid {
   translation -5 0 2.5
@@ -122,6 +179,18 @@ DEF Muro2 Solid {
 }
 Curtain {
   translation -4.5 0.0849122 1.5
+}
+Curtain {
+  translation -4.50156 1.51887 1.5
+  name "curtain(2)"
+}
+Curtain {
+  translation -4.49494 -2.79654 1.5
+  name "curtain(3)"
+}
+Curtain {
+  translation -4.50969 2.87899 1.5
+  name "curtain(4)"
 }
 Curtain {
   translation -4.49596 -1.35865 1.5
@@ -159,11 +228,38 @@ Floor {
   appearance PaintedWood {
   }
 }
+WallPlug {
+  translation 1.19778 4.54094 0.84
+  rotation 0 0 1 -1.5707953071795862
+}
+WallPlug {
+  translation 1.27 4.54078 0.84
+  rotation 0 0 1 -1.5707953071795862
+  name "wall plug(1)"
+}
+WallPlug {
+  translation 1.34 4.54078 0.84
+  rotation 0 0 1 -1.5707953071795862
+  name "wall plug(2)"
+}
+Desk {
+  translation -0.68355 0.636776 -5.96647e-14
+}
+DoubleFluorescentLamp {
+  translation 1.44444 0.650338 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(17)"
+}
+DoubleFluorescentLamp {
+  translation 1.4616 -1.34918 5
+  rotation 0.7071067811862364 -0.7071067811862364 9.381857096790023e-07 3.14159
+  name "double fuorescent lamp(13)"
+}
 OfficeChair {
-  hidden position_0_0 -0.0005128529746025734
-  hidden rotation_1 0 0 -1 0.0005370319715814618
-  translation 1.0820200701886982 3.0703800396854852 -0.0014151210821931604
-  rotation 0.0006822119728205362 -0.002627624256937989 0.999996315082005 0.5236008446653562
+  hidden position_0_0 -0.0027516454985727634
+  hidden rotation_1 0 0 -1 0.0027758244405268573
+  translation 1.0820204131099818 3.0703802331575663 -0.001415118363567669
+  rotation 0.0006766395122476438 -0.002629114928356728 0.999996314950042 0.5236008560354997
   name "office chair(2)"
 }
 Monitor {
@@ -175,16 +271,16 @@ DesktopComputer {
   rotation 0 0 1 -1.5707953071795862
 }
 OfficeChair {
-  hidden position_0_0 -0.0005128529745919153
-  hidden rotation_1 0 0 -1 0.0005370319715814618
-  translation 2.2924499305371824 2.9694500409427396 -0.0014151210821932991
-  rotation 0.0007011440657349999 -0.00019372934291656584 0.9999997354329354 2.617990134483714
+  hidden position_0_0 -0.0027516454984732874
+  hidden rotation_1 0 0 -1 0.0027758244405268573
+  translation 2.2924495915256315 2.9694502411866335 -0.0014151183635676967
+  rotation 0.0007007434180789965 -0.0001952221585429949 0.9999997354234506 2.617990145792533
 }
 OfficeChair {
-  hidden position_0_0 -0.000512852974595468
-  hidden rotation_1 0 0 -1 0.0005370319715814618
-  translation 3.417460000725429 3.0895200806279397 -0.0014151210821931326
-  rotation 0.0006971436042097399 -0.000708070112890033 0.9999995063136333 1.5708004958857862
+  hidden position_0_0 -0.0027516454985541117
+  hidden rotation_1 0 0 -1 0.0027758244405268573
+  translation 3.4174600046329893 3.0895204743425344 -0.0014151183635676412
+  rotation 0.0006956500275346872 -0.0007095624841255053 0.9999995062959381 1.5708005072075826
   name "office chair(1)"
 }
 Table {
@@ -193,36 +289,65 @@ Table {
   name "table(1)"
 }
 OfficeTelephone {
-  translation 2.4404468142547877 4.153977819696193 0.7431581799091483
-  rotation 0.000722356116841884 -0.00013678301303439815 -0.9999997297459874 1.5707961019411782
+  translation 2.440446794897974 4.153977799230998 0.743158179909059
+  rotation 0.0007223560686848311 -0.00013678304590875121 -0.9999997297460176 1.570796214595761
+}
+Monitor {
+  translation -0.745569 0.351457 0.71
+  rotation 0 0 1 0.5236
+  name "monitor ecografia"
 }
 Monitor {
   translation 1.53481 4.30841 0.75
   rotation 0 0 1 -1.5707953071795862
-  name "monitor(1)"
+  name "monitor(2)"
 }
 Table {
   translation 1.32302 3.98419 3.01541e-14
   rotation 0 0 1 1.5708
 }
 ComputerMouse {
-  translation 1.8874000000000002 3.9672700000000005 0.739960766074487
-  rotation -2.3934994600850677e-06 -1.836602551706969e-06 0.9999999999954491 1.3090000000043964
+  translation -0.6722354120757802 0.7136541373060874 0.7099607660743915
+  rotation 4.918552455621564e-07 -1.8366025516766482e-06 0.9999999999981926 -2.6182589925174913
+  name "computer ecografia mouse"
+}
+ComputerMouse {
+  translation 1.8903045929216198 3.9634236805313 -3.9233925548862875e-05
+  rotation -2.3806401851597704e-06 -1.8366025516941058e-06 0.9999999999954797 1.3142071175823258
+  name "computer mouse(1)"
 }
 Keyboard {
   translation 1.54008 4.01052 0.75
   rotation 0 0 1 -1.5707953071795862
 }
+Keyboard {
+  translation -0.526682 0.448736 0.71
+  rotation 0 0 1 -2.6179953071795863
+  name "keyboard ecografia"
+}
 Pedestrian {
-  translation 0.655132 0.656032 1.27
-  rotation 0 0 1 -2.094395307179586
+  translation 0.9480000000000001 1.28 1.247818181818182
+  rotation 0 0 1 3.141592653589793
   name "doctor"
+  controllerArgs [
+    "--trajectory=\"0.92 1.28,1.78 1.28\" --speed=0.5 --pause_duration=3.0"
+  ]
   shirtColor 0.291752 0.598627 0.655756
   pantsColor 0.219608 0.407965 0.525383
   shoesColor 0 0 0
+  rightLegAngle -0.56
+  rightLowerLegAngle 0.84
+  leftLegAngle -0.55
+  leftLowerLegAngle 1.4
+  leftFootAngle 0.07
+  rightArmAngle 0.52
+  rightLowerArmAngle -0.47
+  leftArmAngle -0.52
+  leftHandAngle 0.12
+  headAngle 0.18
 }
 Pedestrian {
-  translation -0.323096 -0.454139 0.87
+  translation -0.332207 -0.460288 0.87
   rotation 0 1 0 -1.5707953071795862
   name "patient"
   shirtColor 1 0.861448 0
@@ -285,7 +410,6 @@ Robot {
     }
     SliderJoint {
       jointParameters JointParameters {
-        position -0.8
         axis 1 0 0
         minStop -0.8
         maxStop 0.8
@@ -299,7 +423,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.8 0 0.07
+        translation 0 0 0.07
         children [
           Shape {
             appearance PBRAppearance {
