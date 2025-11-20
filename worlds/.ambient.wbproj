@@ -5,7 +5,7 @@ sceneTreePerspectives: 000000ff00000001000000030000001e000000c0000000fa010000000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 1 "controllers/camera/camera.py" "controllers/slider_test/slider_test.py"
+textFiles: 0 "controllers/camera/camera.py" "controllers/slider_test/slider_test.py"
 consoles: Console:All:All
 renderingDevicePerspectives: camera:camera;1;0.345313;0;0
 renderingDevicePerspectives: camera:range-finder;1;0.345313;0;0

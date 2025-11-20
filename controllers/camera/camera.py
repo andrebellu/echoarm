@@ -23,8 +23,20 @@ BODY_PARTS = {
     "TORACE": [
         mp_pose.PoseLandmark.LEFT_SHOULDER,
         mp_pose.PoseLandmark.RIGHT_SHOULDER,
+    ],
+    "ADDOME": [
         mp_pose.PoseLandmark.LEFT_HIP,
         mp_pose.PoseLandmark.RIGHT_HIP
+    ],
+    "BRACCIO_SX": [
+        mp_pose.PoseLandmark.LEFT_SHOULDER,
+        mp_pose.PoseLandmark.LEFT_ELBOW,
+        mp_pose.PoseLandmark.LEFT_WRIST
+    ],
+    "BRACCIO_DX": [
+        mp_pose.PoseLandmark.RIGHT_SHOULDER,
+        mp_pose.PoseLandmark.RIGHT_ELBOW,
+        mp_pose.PoseLandmark.RIGHT_WRIST
     ],
     "GAMBE": [
         mp_pose.PoseLandmark.LEFT_KNEE,
@@ -85,12 +97,13 @@ keyboard = robot.getKeyboard()
 keyboard.enable(timestep)
 
 print("--- CONTROLLER AVVIATO ---")
-print("Comandi Tastiera (Click sulla finestra 3D di Webots prima):")
-print(" [1] -> Seleziona TESTA")
-print(" [2] -> Seleziona TORACE")
-print(" [3] -> Seleziona GAMBE")
-print(" [0] -> Nessuna selezione")
-print(" Premi 'Q' nella finestra OpenCV per chiudere.")
+print(" [1] -> TESTA")
+print(" [2] -> TORACE (Spalle)")
+print(" [3] -> ADDOME (Fianchi)")
+print(" [4] -> BRACCIO SX")
+print(" [5] -> BRACCIO DX")
+print(" [6] -> GAMBE")
+print(" [0] -> STOP")
 
 current_selection = None 
 
@@ -100,7 +113,10 @@ while robot.step(timestep) != -1:
     key = keyboard.getKey()
     if key == ord('1'): current_selection = "TESTA"
     elif key == ord('2'): current_selection = "TORACE"
-    elif key == ord('3'): current_selection = "GAMBE"
+    elif key == ord('3'): current_selection = "ADDOME"
+    elif key == ord('4'): current_selection = "BRACCIO_SX"
+    elif key == ord('5'): current_selection = "BRACCIO_DX"
+    elif key == ord('6'): current_selection = "GAMBE"
     elif key == ord('0'): current_selection = None
 
     image_data = camera.getImage()

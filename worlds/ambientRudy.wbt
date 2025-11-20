@@ -24,8 +24,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.49915889611668557 -0.12612719771536063 -0.8572819410345945 3.5682353243969422
-  position 4.810856501378932 -1.0588651654183665 9.035155227372346
+  orientation 0.5394077003507586 0.007813980468649553 -0.84200847650813 3.0175908091221992
+  position 2.208356202765905 -0.30474384611113686 5.096820492715001
 }
 TexturedBackground {
 }
@@ -145,11 +145,9 @@ DEF Muro1 Solid {
   }
 }
 Door {
-  hidden translation_5 0.0014973458164631304 0.0001557236322052291 9.992007221626409e-16
-  hidden rotation_5 0 0 -1 0.0010468721255437261
   translation -0.821541 4.65491 1.31955e-13
   rotation 0 0 1 -1.5707953071795862
-  position -0.001046872125634301
+  position -0.001196279578120673
 }
 DEF Muro2 Solid {
   translation -5 0 2.5
@@ -205,7 +203,7 @@ Solid {
       }
       geometry Mesh {
         url [
-          "../protos/meshes/lettino.stl"
+          "../protos/meshes/lettino_piantana.stl"
         ]
       }
     }
@@ -256,10 +254,8 @@ DoubleFluorescentLamp {
   name "double fuorescent lamp(13)"
 }
 OfficeChair {
-  hidden position_0_0 -0.0027516454985727634
-  hidden rotation_1 0 0 -1 0.0027758244405268573
-  translation 1.0820204131099818 3.0703802331575663 -0.001415118363567669
-  rotation 0.0006766395122476438 -0.002629114928356728 0.999996314950042 0.5236008560354997
+  translation 1.0820204131134126 3.070380233157435 -0.0014153364762717058
+  rotation 0.0006835847850619755 -0.0026276696058108754 0.9999963140253489 0.5236008565281625
   name "office chair(2)"
 }
 Monitor {
@@ -271,16 +267,12 @@ DesktopComputer {
   rotation 0 0 1 -1.5707953071795862
 }
 OfficeChair {
-  hidden position_0_0 -0.0027516454984732874
-  hidden rotation_1 0 0 -1 0.0027758244405268573
-  translation 2.2924495915256315 2.9694502411866335 -0.0014151183635676967
-  rotation 0.0007007434180789965 -0.0001952221585429949 0.9999997354234506 2.617990145792533
+  translation 2.2924495915240293 2.9694502411896697 -0.0014153364762715392
+  rotation 0.0007013385268888625 -0.00019341685934670135 0.9999997353570597 2.617990145856041
 }
 OfficeChair {
-  hidden position_0_0 -0.0027516454985541117
-  hidden rotation_1 0 0 -1 0.0027758244405268573
-  translation 3.4174600046329893 3.0895204743425344 -0.0014151183635676412
-  rotation 0.0006956500275346872 -0.0007095624841255053 0.9999995062959381 1.5708005072075826
+  translation 3.4174600046348167 3.089520474345439 -0.0014153364762717058
+  rotation 0.0006975870794911738 -0.0007078332562509638 0.9999995061720519 1.5708005073617815
   name "office chair(1)"
 }
 Table {
@@ -289,8 +281,8 @@ Table {
   name "table(1)"
 }
 OfficeTelephone {
-  translation 2.440446794897974 4.153977799230998 0.743158179909059
-  rotation 0.0007223560686848311 -0.00013678304590875121 -0.9999997297460176 1.570796214595761
+  translation 2.4404467944182113 4.153977797934505 0.7431580818327023
+  rotation 0.0007226066343940395 -0.00013666845438039846 -0.9999997295806563 1.570796214849042
 }
 Monitor {
   translation -0.745569 0.351457 0.71
@@ -307,13 +299,13 @@ Table {
   rotation 0 0 1 1.5708
 }
 ComputerMouse {
-  translation -0.6722354120757802 0.7136541373060874 0.7099607660743915
-  rotation 4.918552455621564e-07 -1.8366025516766482e-06 0.9999999999981926 -2.6182589925174913
+  translation -0.6722354120757802 0.7136541373060874 0.7099607600060498
+  rotation 4.918552454539486e-07 -1.836602551629505e-06 0.9999999999981926 -2.6182589925174913
   name "computer ecografia mouse"
 }
 ComputerMouse {
-  translation 1.8903045929216198 3.9634236805313 -3.9233925548862875e-05
-  rotation -2.3806401851597704e-06 -1.8366025516941058e-06 0.9999999999954797 1.3142071175823258
+  translation 1.8903045929216198 3.9634236805313 -3.923999389070405e-05
+  rotation -2.3806401848309425e-06 -1.836602551707181e-06 0.9999999999954797 1.3142071175823258
   name "computer mouse(1)"
 }
 Keyboard {
@@ -346,14 +338,6 @@ Pedestrian {
   leftHandAngle 0.12
   headAngle 0.18
 }
-Pedestrian {
-  translation -0.332207 -0.460288 0.87
-  rotation 0 1 0 -1.5707953071795862
-  name "patient"
-  shirtColor 1 0.861448 0
-  pantsColor 0 0 0
-  shoesColor 0.975723 1 0.979568
-}
 Robot {
   translation -0.03 -0.37 3.45
   children [
@@ -362,23 +346,23 @@ Robot {
     }
     SpotLight {
       attenuation 0 0 1
-      beamWidth 0.2
+      beamWidth 0
       cutOffAngle 0.4
       direction 0 0 -2
-      intensity 5
+      intensity 6
     }
     Camera {
       translation -8.87054e-07 -4.61711e-06 0.87
       rotation 0.7071072811853203 1.8797507474938104e-06 -0.7071062811849226 -3.1415853071795863
       children [
         RangeFinder {
-          fieldOfView 1
+          fieldOfView 0.8
           width 640
           height 480
           maxRange 15
         }
       ]
-      fieldOfView 1
+      fieldOfView 0.8
       width 640
       height 480
     }
@@ -392,18 +376,19 @@ Robot {
   controller "camera"
 }
 Pose {
-  translation 1.65291e-06 -0.45 0.94
+  translation 0.960002 -0.45 0.94
   rotation 0 0 1 1.5708
   children [
     CadShape {
       url [
-        "../../../../Downloads/male-base-mesh-with-muscle-detail/source/lp muscle/lp muscle.obj"
+        "../protos/meshes/patient_2.obj"
+        "omino"
       ]
     }
   ]
 }
 Robot {
-  translation 0 -0.88 0.74
+  translation 0 -1.06 0.74
   children [
     Receiver {
       channel 1
@@ -423,16 +408,51 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0 0.07
         children [
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.666667 0 0
-              metalness 0
-            }
-            geometry Sphere {
-              radius 0.05
-            }
+          Solid {
+            translation 0 0.14 0.26
+            children [
+              HingeJoint {
+                endPoint Solid {
+                  rotation 1 0 0 4.6928012867022945e-06
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        metalness 0
+                      }
+                      geometry Mesh {
+                        url [
+                          "../protos/meshes/echoarm/2base_box.stl"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+              Shape {
+                appearance PBRAppearance {
+                  metalness 0
+                }
+                geometry Mesh {
+                  url [
+                    "../protos/meshes/echoarm/1base.stl"
+                  ]
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 -0.07 0.01
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.3 0.05 0.7
+                }
+              }
+            ]
           }
         ]
       }
