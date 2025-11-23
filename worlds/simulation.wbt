@@ -28,12 +28,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/school_furniture/protos/Book.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/traffic/protos/Pole.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/television/protos/Television.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/paintings/protos/PortraitPainting.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2851337070634426 -0.07560863174997061 0.9555009701204683 3.6378871017486847
-  position 4.227278565738644 1.2604257359921753 3.750674102656754
+  orientation -0.07487792073071055 0.03717246696338445 0.9964996260345015 2.2227902063545764
+  position 9.787680923430301 -9.933397306609686 4.065376376904898
 }
 TexturedBackground {
 }
@@ -908,4 +909,11 @@ Robot {
   ]
   name "echoarm"
   controller "slider_test"
+}
+PortraitPainting {
+  translation 1.07 4.47 2.275
+  rotation 0 0 1 -1.5707953071795862
+  textureUrl [
+    "../textures/anatomy.jpg"
+  ]
 }
