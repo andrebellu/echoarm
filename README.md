@@ -91,7 +91,7 @@ This guide explains how to configure the necessary Python environment and run th
    To ensure everything is set up correctly, run:
 
    ```bash
-   python -c "import mediapipe, cv2, numpy; print('All packages are installed correctly!')"
+   python -c "import mediapipe, cv2, numpy, ikpy; print('All packages are installed correctly.')"
    ```
 
    If no errors appear, the installation was successful.
