@@ -1,57 +1,94 @@
-import ikpy.chain
-import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from ikpy.chain import Chain
+from ikpy.link import URDFLink
+import numpy as np
 
-urdf_file = "robot.urdf"
+print(">>> Definizione catena cinetica manuale echoarm...")
 
-print(f">>> Caricamento {urdf_file} (Solo Braccio)...")
+my_chain = Chain(name='echoarm', links=[
+    URDFLink(
+        name="piston_motor",
+        origin_translation=[0,0.04,0],
+        origin_orientation=[0,0,0],
+        joint_type='prismatic',
+        translation=[1, 0, 0],
+        bounds=(0, 0.10)
+    ),
+    URDFLink(
+        name="elbow_motor",
+        origin_translation=[0,0.17,0],
+        origin_orientation=[0,0,0],
+        joint_type='revolute',
+        rotation=[1, 0, 0],
+        bounds=(-6.28,6.28)
+    ),
+    URDFLink(
+        name="lower_arm_rotation_motor",
+        origin_translation=[0,0.075,0.0736],
+        origin_orientation=[0,0,0],
+        joint_type='revolute',
+        rotation=[0, 0, 1],
+        bounds=(-6.28,6.28)
+    ),
+    URDFLink(
+        name="lower_arm_vertical_motor",
+        origin_translation=[0,0.06,0],
+        origin_orientation=[0,0,0],
+        joint_type='revolute',
+        rotation=[1, 0, 0],
+        bounds=(0.3,3.14)
+    )
+])
+
+print(">>> Catena caricata senza warning!")
+
+# Posizione iniziale (tutti a 0 tranne l'ultimo motore verticale)
+initial_position = [0] * len(my_chain.links)
+initial_position[3] = 1.0 
+
+# Target locale. 
+# NOTA: Ho messo un target raggiungibile. Se metti 1.2 metri, il robot (che è lungo 30cm) fallirà.
+target_pos_local = [0.1, 0.3, 0.1] 
+
+print(f">>> Calcolo IK verso: {target_pos_local}")
 
 try:
-    # MODIFICA QUI: Cambiamo base_elements
-    # Prima era ["base_link"]. 
-    # Mettendo "solid", tagliamo via tutto quello che c'è prima (lo slider).
-    my_chain = ikpy.chain.Chain.from_urdf_file(
-        urdf_file,
-        base_elements=["solid"] 
+    ik_solution = my_chain.inverse_kinematics(
+        target_pos_local,
+        initial_position=initial_position
     )
+
+    print("\n>>> SOLUZIONE TROVATA (Angoli Motori):")
+    
+    # Mappatura indici -> nomi per chiarezza
+    # Nota: In IKPy l'indice 0 è la base_link, quindi i motori partono da 1
+    motor_map = {
+        1: "piston_motor (m)",
+        2: "elbow_motor (rad)",
+        3: "lower_arm_rotation_motor (rad)",
+        4: "lower_arm_vertical_motor (rad)"
+    }
+
+    for i, val in enumerate(ik_solution):
+        if i in motor_map:
+            print(f" - {motor_map[i]}: {val:.4f}")
+
+    # === PLOT ===
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    
+    # Plotta la catena nella configurazione trovata
+    my_chain.plot(ik_solution, ax, target=target_pos_local)
+    
+    # Imposta limiti assi per vedere bene il robot (scala in metri)
+    ax.set_xlim(-0.3, 0.3)
+    ax.set_ylim(-0.1, 0.5)
+    ax.set_zlim(0.0, 0.5)
+    
+    plt.show()
+
+except ValueError as ve:
+    print(f"\nERRORE LIMITI O CONFIGURAZIONE: {ve}")
 except Exception as e:
-    print(f"ERRORE CRITICO: {e}")
-    exit()
-
-# === VERIFICA ===
-print("-" * 40)
-print("Nuova Configurazione (Slider Escluso):")
-# Noterai che il giunto 'slider_piston_base' NON comparirà più nella lista
-for i, link in enumerate(my_chain.links):
-    print(f" {i}: {link.name} ({link.joint_type})")
-print("-" * 40)
-
-# === ATTENZIONE: LE COORDINATE ORA SONO LOCALI! ===
-# Se il robot è montato sullo slider, IKPy ora ragiona rispetto al carrello, non alla stanza.
-# Esempio: Se vuoi toccare un punto davanti al robot, la Y target sarà vicina a 0, 
-# perché hai già mosso lo slider per allinearti.
-
-# Target relativo al carrello (Braccio piegato in avanti e in alto)
-# X=0.3 (Avanti), Y=0.0 (Allineato col robot), Z=0.4 (Alto)
-target_pos_local = [0.4, 0.0, 0.4] 
-
-print(f">>> Calcolo IK Locale: {target_pos_local}")
-
-ik_solution = my_chain.inverse_kinematics(target_pos_local)
-
-print("\nAngoli calcolati per il Braccio:")
-# Nota: l'indice degli angoli ora parte dal primo motore DEL BRACCIO
-for i, angle in enumerate(ik_solution):
-    # Filtriamo i link fissi per pulizia
-    if my_chain.links[i].joint_type in ['revolute', 'prismatic']:
-        print(f" - {my_chain.links[i].name}: {angle:.3f}")
-
-# === PLOT ===
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-my_chain.plot(ik_solution, ax, target=target_pos_local)
-ax.set_xlim(-0.5, 0.5)
-ax.set_ylim(-0.5, 0.5)
-ax.set_zlim(0.0, 1.0)
-plt.show()
+    print(f"\nERRORE GENERICO: {e}")

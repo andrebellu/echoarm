@@ -29,13 +29,15 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/traffic/protos/Pole.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/television/protos/Television.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/paintings/protos/PortraitPainting.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Wall.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/animals/protos/Cow.proto"
 
 WorldInfo {
   title "echoarm_simulation"
 }
 Viewpoint {
-  orientation -0.4791865008029157 0.03157428810412999 0.8771450061301008 3.0261284121378895
-  position 2.8158763718432627 -0.950567542675721 5.442236611971011
+  orientation -0.39362817241952247 0.04451519845009352 0.9181912975979545 2.9346587462721296
+  position 5.114026743159123 -1.8319142493593654 6.240575256448126
 }
 TexturedBackground {
 }
@@ -186,22 +188,22 @@ DEF Muro2 Solid {
   }
 }
 Curtain {
-  translation -4.5 0.0849122 1.5
+  translation -4.56 0.0849122 1.5
 }
 Curtain {
-  translation -4.50156 1.51887 1.5
+  translation -4.56156 1.51887 1.5
   name "curtain(2)"
 }
 Curtain {
-  translation -4.49494 -2.79654 1.5
+  translation -4.57494 -2.79654 1.5
   name "curtain(3)"
 }
 Curtain {
-  translation -4.50969 2.87899 1.5
+  translation -4.54969 2.87899 1.5
   name "curtain(4)"
 }
 Curtain {
-  translation -4.49596 -1.35865 1.5
+  translation -4.56596 -1.35865 1.5
   name "curtain(1)"
 }
 Solid {
@@ -236,6 +238,11 @@ Floor {
   appearance PaintedWood {
   }
 }
+Cow {
+  translation 2.6572 4.14 0.74
+  rotation 0 0 1 -2.3561953071795863
+  scale 0.1
+}
 Television {
   translation 1.28078 -1.0522 1.3
   rotation 0 0 -1 -0.523595307179586
@@ -245,6 +252,10 @@ Television {
 }
 Pole {
   translation 1.28997 -1.06903 -0.6000000029999799
+}
+Wall {
+  translation -4.66 0.12 2.8
+  size 0.1 7.5 0.05
 }
 Book {
   translation -2.316927745182684 4.165556495681882 0.489293858486741
@@ -666,13 +677,13 @@ Pose {
     }
   ]
 }
-Robot {
-  translation -0.02 -1.26 0.83
+DEF ECHOARM Robot {
+  translation -0.02 -1.55 0.83
   children [
     Receiver {
       channel 1
     }
-    SliderJoint {
+    DEF JOINT_SLIDER_BASE SliderJoint {
       jointParameters JointParameters {
         axis 1 0 0
         minStop -0.8
@@ -686,12 +697,12 @@ Robot {
           maxPosition 0.8
         }
       ]
-      endPoint Solid {
+      endPoint DEF LINK_SLIDER_BASE Solid {
         children [
           Solid {
             translation 0 0.35 0.2
             children [
-              SliderJoint {
+              DEF JOINT_PISTON SliderJoint {
                 jointParameters JointParameters {
                   axis 0 1 0
                   maxStop 0.07
@@ -704,151 +715,265 @@ Robot {
                     name "piston_motor"
                   }
                 ]
-                endPoint Solid {
-                  translation 0 0.03 0
+                endPoint DEF LINK_PISTON Solid {
+                  translation 0 0.04 0
                   children [
-                    Shape {
-                      appearance PBRAppearance {
-                        baseColor 0.752941 0.752941 0.752941
+                    DEF JOINT_ELBOW HingeJoint {
+                      jointParameters HingeJointParameters {
+                        axis 0 1 0
+                        anchor 0 0.17 0
                       }
-                      geometry Mesh {
-                        url [
-                          "../protos/meshes/echoarm/Piston.stl"
-                        ]
-                      }
-                    }
-                    Solid {
-                      translation 0 0.11 0
-                      children [
-                        HingeJoint {
-                          jointParameters HingeJointParameters {
-                            axis 0 1 0
-                          }
-                          device [
-                            RotationalMotor {
-                              name "elbow_motor"
+                      device [
+                        RotationalMotor {
+                          name "elbow_motor"
+                        }
+                        PositionSensor {
+                          name "elbow_position"
+                        }
+                      ]
+                      endPoint DEF LINK_ELBOW Solid {
+                        translation 0 0.17 0
+                        rotation 0 1 0 0
+                        children [
+                          DEF JOINT_LOWER_ARM_ROTATION HingeJoint {
+                            jointParameters HingeJointParameters {
+                              axis 0 0 1
+                              anchor 0 0.075 0.0736
                             }
-                            PositionSensor {
-                              name "elbow_motor_position"
-                            }
-                          ]
-                          endPoint Solid {
-                            translation 0 0.06 0
-                            rotation 0 1 0 0
-                            children [
-                              HingeJoint {
-                                jointParameters HingeJointParameters {
-                                  axis 0 0 1
-                                  anchor 0 0.075 0.0735
-                                }
-                                device [
-                                  PositionSensor {
-                                    name "lower_arm_rotation_position"
+                            device [
+                              RotationalMotor {
+                                name "lower_arm_rotation_motor"
+                              }
+                              PositionSensor {
+                                name "lower_arm_rotation_sensor"
+                              }
+                            ]
+                            endPoint DEF LINK_LOWER_ARM_ROTATION Solid {
+                              translation 0 0.075 0.0736
+                              rotation 1 0 0 1.5708
+                              children [
+                                DEF JOINT_LOWER_ARM_VERTICAL HingeJoint {
+                                  jointParameters HingeJointParameters {
+                                    anchor 0 0.06 0
                                   }
-                                  RotationalMotor {
-                                    name "lower_arm_rotation_motor"
-                                  }
-                                ]
-                                endPoint Solid {
-                                  translation 0 0.075 0.0735
-                                  rotation 0.2810851028163115 0.6785982482200877 0.6785982482200877 2.59356
-                                  children [
-                                    HingeJoint {
-                                      jointParameters HingeJointParameters {
-                                        anchor 0 0.06 0
-                                      }
-                                      device [
-                                        PositionSensor {
-                                          name "lower_arm_vertical_sensor"
+                                  device [
+                                    PositionSensor {
+                                      name "lower_arm_vertical_sensor"
+                                    }
+                                    RotationalMotor {
+                                      name "lower_arm_vertical_motor"
+                                    }
+                                  ]
+                                  endPoint DEF LINK_LOWER_ARM_VERTICAL Solid {
+                                    translation 0.035 0.06 0
+                                    rotation -0.5773502691896257 0.5773502691896257 0.5773502691896257 2.09439
+                                    children [
+                                      HingeJoint {
+                                        jointParameters HingeJointParameters {
+                                          axis 0 1 0
+                                          anchor 0.36 0.035 0
                                         }
-                                        RotationalMotor {
-                                          name "lower_arm_vertical_motor"
-                                        }
-                                      ]
-                                      endPoint Solid {
-                                        translation -0.035 0.06 -1.45941e-13
-                                        rotation 0.5773492691885822 0.5773502691890483 -0.5773512691895146 2.094395307179586
-                                        children [
-                                          Shape {
-                                            appearance PBRAppearance {
-                                            }
-                                            geometry Mesh {
-                                              url [
-                                                "../protos/meshes/echoarm/LowerArm.stl"
-                                              ]
-                                            }
+                                        device [
+                                          RotationalMotor {
+                                            name "upper_arm_rotation_motor"
+                                          }
+                                          PositionSensor {
+                                            name "upper_arm_rotation_sensor"
                                           }
                                         ]
-                                        boundingObject Mesh {
+                                        endPoint Solid {
+                                          translation 0.41 0.035 0
+                                          rotation 0 0 1 1.5708
+                                          children [
+                                            HingeJoint {
+                                              jointParameters HingeJointParameters {
+                                                axis 0 1 0
+                                              }
+                                              device [
+                                                RotationalMotor {
+                                                  name "upper_arm_rotation_motor"
+                                                }
+                                                PositionSensor {
+                                                  name "upper_arm_rotation_sensor"
+                                                }
+                                              ]
+                                              endPoint Solid {
+                                                translation -2.06647e-15 0.01 0
+                                                rotation 0 0 1 3.14159
+                                                children [
+                                                  HingeJoint {
+                                                    jointParameters HingeJointParameters {
+                                                      anchor 0 0.06 0
+                                                    }
+                                                    device [
+                                                      RotationalMotor {
+                                                        name "upper_arm_vertical_motor"
+                                                      }
+                                                      PositionSensor {
+                                                        name "upper_arm_vertical_sensor"
+                                                      }
+                                                    ]
+                                                    endPoint Solid {
+                                                      translation 0.035 0.0600001 0
+                                                      rotation 0 0 1 1.5708
+                                                      children [
+                                                        HingeJoint {
+                                                          jointParameters HingeJointParameters {
+                                                            axis 0 1 0
+                                                            anchor 0.35 0 0
+                                                          }
+                                                          device [
+                                                            RotationalMotor {
+                                                              name "probe_motor"
+                                                            }
+                                                            PositionSensor {
+                                                              name "probe_sensor"
+                                                            }
+                                                          ]
+                                                          endPoint Solid {
+                                                            translation 0.33 -0.0155 -0.0075
+                                                            rotation 0 0 -0.9999999999999999 1.5707953071795862
+                                                            children [
+                                                              Shape {
+                                                                appearance PBRAppearance {
+                                                                  metalness 0
+                                                                }
+                                                                geometry Mesh {
+                                                                  url [
+                                                                    "../protos/meshes/echoarm/probe.stl"
+                                                                  ]
+                                                                }
+                                                              }
+                                                            ]
+                                                            boundingObject Mesh {
+                                                              url [
+                                                                "../protos/meshes/echoarm/probe.stl"
+                                                              ]
+                                                            }
+                                                          }
+                                                        }
+                                                        Shape {
+                                                          appearance PBRAppearance {
+                                                          }
+                                                          geometry Mesh {
+                                                            url [
+                                                              "../protos/meshes/echoarm/UpperArm.stl"
+                                                            ]
+                                                          }
+                                                        }
+                                                      ]
+                                                      boundingObject Mesh {
+                                                        url [
+                                                          "../protos/meshes/echoarm/UpperArm.stl"
+                                                        ]
+                                                      }
+                                                    }
+                                                  }
+                                                  Shape {
+                                                    appearance PBRAppearance {
+                                                    }
+                                                    geometry Mesh {
+                                                      url [
+                                                        "../protos/meshes/echoarm/UpperArmVertical.stl"
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                                boundingObject Mesh {
+                                                  url [
+                                                    "../protos/meshes/echoarm/UpperArmVertical.stl"
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                            Shape {
+                                              appearance PBRAppearance {
+                                              }
+                                              geometry Mesh {
+                                                url [
+                                                  "../protos/meshes/echoarm/UpperArmRotation.stl"
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                          boundingObject Mesh {
+                                            url [
+                                              "../protos/meshes/echoarm/UpperArmRotation.stl"
+                                            ]
+                                          }
+                                        }
+                                      }
+                                      Shape {
+                                        appearance PBRAppearance {
+                                        }
+                                        geometry Mesh {
                                           url [
                                             "../protos/meshes/echoarm/LowerArm.stl"
                                           ]
                                         }
                                       }
+                                    ]
+                                    boundingObject Mesh {
+                                      url [
+                                        "../protos/meshes/echoarm/LowerArm.stl"
+                                      ]
                                     }
-                                    Shape {
-                                      appearance PBRAppearance {
-                                      }
-                                      geometry Mesh {
-                                        url [
-                                          "../protos/meshes/echoarm/LowerArmRotation.stl"
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                  boundingObject Mesh {
+                                  }
+                                }
+                                Shape {
+                                  appearance PBRAppearance {
+                                  }
+                                  geometry Mesh {
                                     url [
                                       "../protos/meshes/echoarm/LowerArmRotation.stl"
                                     ]
                                   }
                                 }
+                              ]
+                              boundingObject Mesh {
+                                url [
+                                  "../protos/meshes/echoarm/LowerArmRotation.stl"
+                                ]
                               }
-                              Shape {
-                                appearance PBRAppearance {
-                                  baseColor 0 0.666667 1
-                                }
-                                geometry Mesh {
-                                  url [
-                                    "../protos/meshes/echoarm/LowerElbow.stl"
-                                  ]
-                                }
-                              }
-                            ]
-                            boundingObject Mesh {
+                            }
+                          }
+                          Shape {
+                            appearance PBRAppearance {
+                            }
+                            geometry Mesh {
                               url [
                                 "../protos/meshes/echoarm/LowerElbow.stl"
                               ]
                             }
                           }
+                        ]
+                        boundingObject Mesh {
+                          url [
+                            "../protos/meshes/echoarm/LowerElbow.stl"
+                          ]
                         }
-                        Shape {
-                          appearance PBRAppearance {
-                          }
-                          geometry Mesh {
-                            url [
-                              "../protos/meshes/echoarm/ElbowBox.stl"
-                            ]
-                          }
-                        }
-                      ]
-                      boundingObject Mesh {
+                      }
+                    }
+                    Shape {
+                      appearance PBRAppearance {
+                      }
+                      geometry Mesh {
                         url [
-                          "../protos/meshes/echoarm/ElbowBox.stl"
+                          "../protos/meshes/echoarm/piston+elbow_box.stl"
                         ]
                       }
                     }
                   ]
-                  name "slider"
+                  name "LINK_PISTON"
                   boundingObject Mesh {
                     url [
-                      "../protos/meshes/echoarm/Piston.stl"
+                      "../protos/meshes/echoarm/piston+elbow_box.stl"
                     ]
                   }
                 }
               }
               Shape {
                 appearance PBRAppearance {
-                  baseColor 0 0.666667 1
                 }
                 geometry Mesh {
                   url [
@@ -857,6 +982,7 @@ Robot {
                 }
               }
             ]
+            name "base_and_box"
             boundingObject Mesh {
               url [
                 "../protos/meshes/echoarm/base+box.stl"
