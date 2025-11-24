@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot name="echoarm_clean">
+
+  <link name="base_link" />
+
+  <joint name="slider_piston_base" type="prismatic">
+    <parent link="base_link"/>
+    <child link="solid"/>
+    <axis xyz="1 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <limit effort="10" lower="-0.8" upper="0.8" velocity="5"/>
+  </joint>
+
+  <link name="solid" />
+
+  <joint name="solid_solid_0_joint" type="fixed">
+    <parent link="solid"/>
+    <child link="solid_0"/>
+    <origin xyz="0 0.35 0.2" rpy="0 0 0"/>
+  </joint>
+
+  <link name="solid_0" />
+
+  <joint name="piston_motor" type="prismatic">
+    <parent link="solid_0"/>
+    <child link="slider"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="0 0.03 0" rpy="0 0 0"/>
+    <limit effort="10" lower="0.0" upper="0.5" velocity="10"/>
+  </joint>
+
+  <link name="slider" />
+
+  <joint name="slider_solid_1_joint" type="fixed">
+    <parent link="slider"/>
+    <child link="solid_1"/>
+    <origin xyz="0 0.11 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="solid_1" />
+
+  <joint name="elbow_motor" type="revolute">
+    <parent link="solid_1"/>
+    <child link="solid_2"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10" lower="-3.14" upper="3.14" velocity="10"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="solid_2" />
+
+  <joint name="lower_arm_rotation_motor" type="revolute">
+    <parent link="solid_2"/>
+    <child link="solid_3"/>
+    <axis xyz="0 1 0"/> 
+    <limit effort="10" lower="-3.14" upper="3.14" velocity="10"/>
+    <origin xyz="0 0.135 0.0735" rpy="1.570795 0 2.356191"/>
+  </joint>
+
+  <link name="solid_3" />
+
+  <joint name="lower_arm_vertical_motor" type="revolute">
+    <parent link="solid_3"/>
+    <child link="solid_4"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10" lower="-3.14" upper="3.14" velocity="10"/>
+    <origin xyz="0 0.06 0" rpy="-0.853554 1.570794 -2.424351"/>
+  </joint>
+
+  <link name="solid_4" />
+
+</robot>

@@ -40,7 +40,10 @@ while robot.step(timestep) != -1:
             parts = message.split(',')
             if len(parts) >= 4:
                 target_name = parts[0]
-                y_cam = float(parts[2]) 
+                x_cam = float(parts[1]) 
+                y_cam = float(parts[2])
+                z_cam = float(parts[3]) 
+ 
 
                 raw_target = y_cam 
                 scaled_target = raw_target
@@ -49,7 +52,7 @@ while robot.step(timestep) != -1:
 
                 if slider:
                     slider.setPosition(final_target)
-                    print(f"Target: {target_name} | Y_Cam: {y_cam:.2f} -> Slider: {final_target:.2f}")
+                    print(f"Target: {target_name} | X_Cam: {x_cam:.2f} | Y_Cam: {y_cam:.2f} | Z_Cam: {z_cam:.2f} -> Slider: {final_target:.2f}")
             
         except ValueError:
             pass
