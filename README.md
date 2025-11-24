@@ -37,7 +37,7 @@ This guide explains how to configure the necessary Python environment and run th
    - **On Windows:**
 
    ```bash
-      py -3.11 -m venv .venv
+      py -3.11 -m venv robot_venv
    ```
 
    - **On macOS/Linux:**
