@@ -43,13 +43,13 @@ This guide explains how to configure the necessary Python environment and run th
    - **On macOS/Linux:**
 
    ```bash
-      python3.11 -m venv .venv
+      python3.11 -m venv robot_venv
    ```
 
    If Python 3.11.9 is already your default version, you can simply run:
 
    ```bash
-      python -m venv .venv
+      python -m venv robot_venv
    ```
 
    > ⚠️ **Important**: Make sure you're using Python 3.11.9 to create the virtual environment, as other versions may cause compatibility issues.
@@ -59,20 +59,20 @@ This guide explains how to configure the necessary Python environment and run th
    - **On Windows (cmd or PowerShell):**
 
      ```bash
-     .\.venv\Scripts\activate
+     .\robot_venv\Scripts\activate
      ```
 
    - **On macOS/Linux:**
 
      ```bash
-     source .venv/bin/activate
+     source robot_venv/bin/activate
      ```
 
-     > (You should see `(.venv)` at the beginning of your terminal prompt.)
+     > (You should see `(robot_venv)` at the beginning of your terminal prompt.)
 
 4. **Verify Python Version in Virtual Environment**
 
-   With the `(.venv)` active, check the Python version:
+   With the `(robot_venv)` active, check the Python version:
 
    ```bash
    python --version
@@ -106,15 +106,15 @@ You must configure Webots to use the Python interpreter from your new virtual en
 2. Go to the top menu: `Tools` → `Preferences...`.
 3. In the **General** tab, find the **python command** field.
 4. Click **Select...**.
-5. Navigate to your project folder → `.venv` →
-   - **Windows:** `.venv\Scripts\python.exe`
-   - **macOS/Linux:** `.venv/bin/python`
+5. Navigate to your project folder → `robot_venv` →
+   - **Windows:** `robot_venv\Scripts\python.exe`
+   - **macOS/Linux:** `robot_venv/bin/python`
 6. Click **OK** or **Apply**.
 7. **Restart Webots** for the change to take effect.
 
 > ⚠️ **Note:** In some cases, Webots may request the _absolute path_ to the Python executable.  
 > Make sure to provide the full path to the `python.exe` inside your virtual environment (e.g.  
-> `C:\Users\<username>\Documents\webots\echoarm\.venv\Scripts\python.exe`).
+> `C:\Users\<username>\Documents\webots\echoarm\robot_venv\Scripts\python.exe`).
 
 ---
 
@@ -123,12 +123,12 @@ You must configure Webots to use the Python interpreter from your new virtual en
 1. Open the desired world file (`.wbt`) in Webots.
 2. In the Scene Tree (left panel), select your robot node.
 3. Ensure the `controller` field is set to the correct Python script (e.g., `echoarm`).
-4. Click **Reload** (or press `Ctrl+R`) and then **Play** to start the simulation.
+4. Click **Reload** and then **Play** to start the simulation.
 
 Depending on which world you open:
 
-- In the **motor test world**, the robot will move around to verify the correct behavior of its motors.
 - In the **camera test world**, a fixed camera will stream video processed through **OpenCV** and **MediaPipe**, allowing you to verify the computer vision pipeline.
+- In the **simulation world** with the Echoarm robot, the robot will attempt to mimic hand movements detected by the camera.
 
 ---
 
