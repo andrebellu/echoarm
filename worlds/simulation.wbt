@@ -2,7 +2,6 @@
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Ceiling.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/hospital/protos/EmergencyExitSign.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/PaintedWood.proto"
@@ -31,13 +30,14 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/paintings/protos/PortraitPainting.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/apartment_structure/protos/Wall.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/animals/protos/Cow.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
 
 WorldInfo {
   title "echoarm_simulation"
 }
 Viewpoint {
-  orientation -0.39362817241952247 0.04451519845009352 0.9181912975979545 2.9346587462721296
-  position 5.114026743159123 -1.8319142493593654 6.240575256448126
+  orientation -0.35684575771023797 -0.024083940071362043 0.9338528090844108 3.267479789069203
+  position 1.889735847322208 -0.773964317449714 2.7816540688089453
 }
 TexturedBackground {
 }
@@ -51,6 +51,11 @@ Ceiling {
     textureTransform TextureTransform {
       scale 10 10
     }
+  }
+}
+Floor {
+  tileSize 2 1
+  appearance PaintedWood {
   }
 }
 DoubleFluorescentLamp {
@@ -159,7 +164,7 @@ DEF Muro1 Solid {
 Door {
   translation -0.821541 4.65491 1.31955e-13
   rotation 0 0 1 -1.5707953071795862
-  position -0.0017944923025006066
+  position -0.0019407029228525022
 }
 DEF Muro2 Solid {
   translation -5 0 2.5
@@ -233,11 +238,6 @@ EmergencyExitSign {
   translation -0.81 4.39 2.23
   rotation 1 0 0 1.5708
 }
-Floor {
-  tileSize 2 1
-  appearance PaintedWood {
-  }
-}
 Cow {
   translation 2.6572 4.14 0.74
   rotation 0 0 1 -2.3561953071795863
@@ -258,92 +258,92 @@ Wall {
   size 0.1 7.5 0.05
 }
 Book {
-  translation -2.316927745182684 4.165556495681882 0.489293858486741
-  rotation 0.5777364099343031 -0.5766684179006084 0.5776453725532925 2.0924094120639025
+  translation -2.316927738661737 4.165556500683838 0.48929365435670585
+  rotation 0.5777365648217584 -0.5766681957439428 0.5776454394222978 2.092408746499705
 }
 Book {
-  translation -3.105050800140995 4.179274301681178 0.48929385894209043
-  rotation 0.576949704139422 -0.5768395606113655 0.5782604605254629 2.092928438323737
+  translation -3.105050799424049 4.179274309048965 0.4892936550495727
+  rotation 0.5769495896169298 -0.5768394046398052 0.5782607303765762 2.0929279717098113
   name "book(2)"
 }
 Book {
-  translation -2.3092496914294385 4.1901185030177865 0.508629962429535
-  rotation 0.5781217099509361 -0.5761011151081313 0.5778259198535259 2.0908504359978286
+  translation -2.309249599373026 4.190118578075092 0.5086295642755863
+  rotation 0.5781220140617684 -0.5761007168089116 0.5778260126970945 2.090849204585879
   name "book(3)"
 }
 Book {
-  translation -3.1186746827988374 4.200628148855917 0.5086390545924822
-  rotation 0.5769373934682597 -0.5761689235008104 0.578940943110753 2.0910783090398097
+  translation -3.1186746537050043 4.200628269610884 0.5086386611544135
+  rotation 0.5769372751062519 -0.5761685685333192 0.5789414143307066 2.0910772540678058
   name "book(6)"
 }
 Book {
-  translation -2.319063060354095 4.190175941354744 0.5283111688360096
-  rotation 0.5791812924686138 -0.5755258393169239 0.5773378895698225 2.0891519257285665
+  translation -2.319062731931711 4.190176059237857 0.5283084808155342
+  rotation 0.5791886991667636 -0.5755218453582707 0.5773344405740254 2.089140062012756
   name "book(5)"
 }
 Book {
-  translation -3.1260430336823415 4.199983244875269 0.5478772676686143
-  rotation 0.5841053838921314 -0.5626007281158472 0.5850652281854944 2.108307977742614
+  translation -3.126042905055782 4.199983574463695 0.5478766563250365
+  rotation 0.5841055473955991 -0.5626000930492266 0.5850656756319662 2.1083063412948535
   name "book(7)"
 }
 Book {
-  translation -3.105351170269963 4.214349059477429 0.5873550236187913
-  rotation 0.6049469583143388 -0.5175383696891775 0.6051390034741588 2.1775560611849865
+  translation -3.1053509257492404 4.214349531269792 0.5873542581098768
+  rotation 0.6049472390417036 -0.5175376598937282 0.6051393298799405 2.177554399112319
   name "book(9)"
 }
 Book {
-  translation -3.9135584633794482 4.201460816367129 0.5285610116854806
-  rotation 0.5738645404897645 -0.5814189430107882 0.5767421450498388 2.0877891741182784
+  translation -3.913558539522785 4.201460910055007 0.528560591421415
+  rotation 0.573864125971434 -0.581418889727559 0.5767426112149289 2.0877891175244288
   name "book(10)"
 }
 Book {
-  translation -2.2849091898753238 4.207223534051109 0.5476748652663338
-  rotation 0.5798225010507162 -0.5750395249300008 0.5771788388736813 2.0888762046986864
+  translation -2.2849083871917886 4.2072237045441305 0.5476713797833401
+  rotation 0.5798301028911792 -0.575035419869654 0.5771752919837569 2.088864127823328
   name "book(11)"
 }
 Book {
-  translation -2.2886037070011187 4.200807028040008 0.5674847731094569
-  rotation 0.5796521601681468 -0.5754329450833259 0.576957796485264 2.0887942253345546
+  translation -2.2886024478426057 4.200807235348287 0.5674812994563557
+  rotation 0.579659770557013 -0.5754288521843629 0.5769542325623217 2.0887822476486395
   name "book(12)"
 }
 Book {
-  translation -3.104016002483135 4.231071479248711 0.5279905780418241
-  rotation 0.5777185232501485 -0.5749307855678311 0.579392699039282 2.0913634252164783
+  translation -3.104015924981089 4.231071714018271 0.5279899938067789
+  rotation 0.5777185171781263 -0.5749302993254114 0.5793931875912071 2.091362068555843
   name "book(13)"
 }
 Book {
-  translation -3.911169445457025 4.205448751779567 0.5682409850792839
-  rotation 0.5876229582346078 -0.5531582737295853 0.5905211115278721 2.130413476791417
+  translation -3.9111695714295167 4.20544890957947 0.5682404718375536
+  rotation 0.5876225421315204 -0.5531582102557261 0.5905215850462806 2.1304133970749417
   name "book(15)"
 }
 Book {
-  translation -3.063812212297305 4.256129889463987 0.5670308040485951
-  rotation 0.5707256503042791 -0.589845107429726 0.5712748737043951 2.066114273038799
+  translation -3.063812023047141 4.256130310050183 0.5670299350141682
+  rotation 0.5707259415444589 -0.5898443851696507 0.5712753284818345 2.0661123538083075
   name "book(16)"
 }
 Book {
-  translation -2.29615226074499 4.180226807252946 0.5874730220542892
-  rotation 0.5795420942273685 -0.5756891021417301 0.576812810792032 2.088615784333435
+  translation -2.296150569617734 4.180227038867599 0.587469682029812
+  rotation 0.5795497087160991 -0.5756850146947949 0.5768092396823565 2.088603848645344
   name "book(17)"
 }
 Book {
-  translation -3.8963176080434336 4.20501157665678 0.5483527124918909
-  rotation 0.5683971804692473 -0.5920812631331052 0.5712831374032641 2.0718937397904686
+  translation -3.8963177144294696 4.205011710784552 0.5483522324567577
+  rotation 0.5683967652912479 -0.5920812070230519 0.5712836086363514 2.0718936797837713
   name "book(14)"
 }
 Book {
-  translation -3.8908498664180287 4.192420236842845 0.5089826694034334
-  rotation 0.5778053029798808 -0.573957390276009 0.5802705799847874 2.0988167857369744
+  translation -3.8908499041863487 4.192420282867247 0.5089823728341917
+  rotation 0.5778049581044089 -0.5739573262643141 0.5802709867100732 2.0988166938984185
   name "book(8)"
 }
 Book {
-  translation -3.9258458144344224 4.18759081799112 0.3635360399341829
-  rotation 0.3240767989816192 -0.42275528105176735 0.8463168441574753 2.0352936059231945
+  translation -3.925844933572871 4.187591005124462 0.3635350524946777
+  rotation 0.32407976904679825 -0.4227674835584377 0.8463096112772441 2.035317373195133
   name "book(4)"
 }
 Book {
-  translation -3.886050786375821 4.180488726246783 0.4894115597117619
-  rotation 0.567921080022077 -0.594406150859633 0.5693390682948016 2.0694340404545475
+  translation -3.886050790784692 4.180488729272179 0.48941138836154796
+  rotation 0.5679208494215615 -0.5944061797215483 0.5693392681882454 2.0694341307653
   name "book(1)"
 }
 Clock {
@@ -541,8 +541,8 @@ DoubleFluorescentLamp {
   name "double fuorescent lamp(13)"
 }
 OfficeChair {
-  translation 1.0820208527082482 3.0703804819537908 -0.0014149133760749943
-  rotation 0.0006797516671848518 -0.0026278718252802325 0.9999963161068849 0.5236008680716765
+  translation 1.0820208527118855 3.070380481952456 -0.0014153342692832804
+  rotation 0.0006835510719184197 -0.002627707204976228 0.9999963139495951 0.5236008691926578
   name "office chair(2)"
 }
 Monitor {
@@ -554,12 +554,12 @@ DesktopComputer {
   rotation 0 0 1 -1.5707953071795862
 }
 OfficeChair {
-  translation 2.2924491562637033 2.9694504974935714 -0.001414913376075022
-  rotation 0.0007008719216573492 -0.00019433343663793982 0.9999997355064976 2.6179901583655014
+  translation 2.2924491562630416 2.9694504974973888 -0.0014153342692832527
+  rotation 0.0007013427504804083 -0.0001934297241507683 0.999999735351609 2.617990158485274
 }
 OfficeChair {
-  translation 3.4174600089665184 3.0895209794439285 -0.0014149133760748556
-  rotation 0.0006964090484678509 -0.0007085988808212652 0.9999995064509098 1.5708005196671335
+  translation 3.417460008969493 3.089520979446411 -0.0014153342692831972
+  rotation 0.0006975832860799852 -0.0007078513569368525 0.9999995061618858 1.5708005199984858
   name "office chair(1)"
 }
 Table {
@@ -568,8 +568,8 @@ Table {
   name "table(1)"
 }
 OfficeTelephone {
-  translation 2.4404467706020703 4.1539777743499355 0.7431582736548078
-  rotation 0.0007221170825754857 -0.0001368922065301148 -0.9999997299036849 1.570796358616844
+  translation 2.4404467696850616 4.153977771874084 0.7431580860563192
+  rotation 0.0007225956915626094 -0.0001366734882123893 -0.9999997295878756 1.5707963591007428
 }
 Monitor {
   translation -0.745569 0.351457 0.71
@@ -586,13 +586,13 @@ Table {
   rotation 0 0 1 1.5708
 }
 ComputerMouse {
-  translation -0.6722354120757802 0.7136541373060874 0.7099607718657451
-  rotation 4.918552455762095e-07 -1.8366025516247532e-06 0.9999999999981926 -2.6182589925174913
+  translation -0.6722354120757802 0.7136541373060874 0.7099607602670769
+  rotation 4.918552455100075e-07 -1.8366025516045829e-06 0.9999999999981926 -2.6182589925174913
   name "computer ecografia mouse"
 }
 ComputerMouse {
-  translation 1.8903 3.96342 0.7399607718658442
-  rotation -2.3806401851379767e-06 -1.8366025520055888e-06 0.9999999999954797 1.314207117582323
+  translation 1.8903 3.96342 0.7399607602671671
+  rotation -2.3806401850969693e-06 -1.8366025518048121e-06 0.9999999999954796 1.314207117582323
   name "computer mouse(1)"
 }
 Keyboard {
@@ -666,7 +666,7 @@ DEF CAMERA Robot {
   controller "camera"
 }
 Pose {
-  translation 0.960002 -0.45 0.94
+  translation 0.95 -0.45 0.9
   rotation 0 0 1 1.5708
   children [
     CadShape {
@@ -678,7 +678,7 @@ Pose {
   ]
 }
 DEF ECHOARM Robot {
-  translation -0.02 -1.55 0.83
+  translation 0 -1.7 0.85
   children [
     Receiver {
       channel 1
@@ -690,6 +690,9 @@ DEF ECHOARM Robot {
         maxStop 0.8
       }
       device [
+        PositionSensor {
+          name "slider_base_sensor"
+        }
         LinearMotor {
           name "slider_piston_base"
           maxVelocity 5
@@ -750,10 +753,11 @@ DEF ECHOARM Robot {
                             ]
                             endPoint DEF LINK_LOWER_ARM_ROTATION Solid {
                               translation 0 0.075 0.0736
-                              rotation 1 0 0 1.5708
+                              rotation 1 0 0 1.5708003061004252
                               children [
                                 DEF JOINT_LOWER_ARM_VERTICAL HingeJoint {
                                   jointParameters HingeJointParameters {
+                                    position 1.57
                                     anchor 0 0.06 0
                                   }
                                   device [
@@ -766,24 +770,25 @@ DEF ECHOARM Robot {
                                   ]
                                   endPoint DEF LINK_LOWER_ARM_VERTICAL Solid {
                                     translation 0.035 0.06 0
-                                    rotation -0.5773502691896257 0.5773502691896257 0.5773502691896257 2.09439
+                                    rotation -0.00039521865680989117 0.00039816335583172773 0.9999998426340653 1.5707935371198234
                                     children [
                                       HingeJoint {
                                         jointParameters HingeJointParameters {
+                                          position 1.57
                                           axis 0 1 0
                                           anchor 0.36 0.035 0
                                         }
                                         device [
                                           RotationalMotor {
-                                            name "upper_arm_rotation_motor"
+                                            name "lower_upper_arm_rotation_motor"
                                           }
                                           PositionSensor {
-                                            name "upper_arm_rotation_sensor"
+                                            name "lower_upper_arm_rotation_sensor"
                                           }
                                         ]
                                         endPoint Solid {
-                                          translation 0.41 0.035 0
-                                          rotation 0 0 1 1.5708
+                                          translation 0.36003981633553667 0.035 -0.04999998414659172
+                                          rotation 0.5771976613402439 0.5771955411787425 0.5776574824121401 2.0939375257929127
                                           children [
                                             HingeJoint {
                                               jointParameters HingeJointParameters {
@@ -803,6 +808,7 @@ DEF ECHOARM Robot {
                                                 children [
                                                   HingeJoint {
                                                     jointParameters HingeJointParameters {
+                                                      position -1.57
                                                       anchor 0 0.06 0
                                                     }
                                                     device [
@@ -814,8 +820,8 @@ DEF ECHOARM Robot {
                                                       }
                                                     ]
                                                     endPoint Solid {
-                                                      translation 0.035 0.0600001 0
-                                                      rotation 0 0 1 1.5708
+                                                      translation 0.035 0.060000000079632666 -9.999996829605904e-08
+                                                      rotation -0.5771955411787425 0.5771976613402439 0.5776574824121401 2.0939375257929127
                                                       children [
                                                         HingeJoint {
                                                           jointParameters HingeJointParameters {
@@ -1013,6 +1019,7 @@ DEF ECHOARM Robot {
   ]
   name "echoarm"
   controller "ultrasound"
+  supervisor TRUE
 }
 PortraitPainting {
   translation 1.07 4.47 2.275
