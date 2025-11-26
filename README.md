@@ -120,15 +120,49 @@ You must configure Webots to use the Python interpreter from your new virtual en
 
 ## 4. Run the Simulation
 
-1. Open the desired world file (`.wbt`) in Webots.
-2. In the Scene Tree (left panel), select your robot node.
-3. Ensure the `controller` field is set to the correct Python script (e.g., `echoarm`).
-4. Click **Reload** and then **Play** to start the simulation.
+The system consists of two parts: the Webots Simulator (Server) and the Python GUI (Client). Follow this specific order to establish the connection.
 
-Depending on which world you open:
+### Step 1: Open the World
+1. Launch Webots.
 
-- In the **camera test world**, a fixed camera will stream video processed through **OpenCV** and **MediaPipe**, allowing you to verify the computer vision pipeline.
-- In the **simulation world** with the Echoarm robot, the robot will attempt to mimic hand movements detected by the camera.
+2. Go to File → Open World....
+
+3. Select simulation.wbt located in the worlds/ directory.
+
+4. Pause the simulation if it starts automatically.
+
+### Step 2: Launch the GUI
+1. Open a terminal/command prompt.
+
+2. Activate the virtual environment (see Section 2).
+3. Run the GUI script
+   ```python
+      python gui.py
+   ```
+4. The GUI window will open. The status indicator should show "DISCONNECTED" (or Red) because the simulation is not running yet.
+
+### Step 3: Start Simulation & Connect
+
+1. Return to the Webots window.
+
+2. Click the Play button (▶) in the top toolbar.
+
+3. Watch the GUI window:
+
+4. Within a few seconds, the status indicator should turn GREEN / "CONNECTED".
+
+5. The Webots console output should display: >>> GUI connected.
+
+### Step 4: Test the System
+1. Scan Phase: Wait for the robot camera to scan the patient (watch the percentage overlay in the 3D view).
+
+2. Command: Once the scan is complete, click a button on the GUI (e.g., "TESTA" or "BRACCIO_DX").
+
+3. Action:
+
+   - The GUI log will confirm: Target sent: ...
+
+   - The robot in Webots will perform the desired movement
 
 ---
 
@@ -143,3 +177,11 @@ Depending on which world you open:
 
 - Use absolute paths instead of relative paths
 - Make sure the virtual environment is activated when checking the Python path
+
+### **Error: "Module not found" in Webots console**
+- This means Webots is using the wrong Python interpreter.
+- Double-check Section 3 and ensure the path points to `robot_venv` and not the system Python.
+- Restart Webots after changing the path.
+
+### **Error: "ModuleNotFoundError: No module named 'tkinter'"**
+This error occurs when launching `gui.py` if the system-level Tkinter library is missing (required by CustomTkinter).
