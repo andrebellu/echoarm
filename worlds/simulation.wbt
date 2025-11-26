@@ -751,7 +751,7 @@ DEF ECHOARM Robot {
                                         ]
                                         endPoint Solid {
                                           translation 0.36003981633553667 0.035 -0.04999998414659172
-                                          rotation 0.5771976613402438 0.5771955411787425 0.5776574824121402 2.0939375257929127
+                                          rotation 0.5771976613402436 0.5771955411787425 0.5776574824121402 2.0939375257929127
                                           children [
                                             HingeJoint {
                                               jointParameters HingeJointParameters {
@@ -784,7 +784,7 @@ DEF ECHOARM Robot {
                                                     ]
                                                     endPoint Solid {
                                                       translation 0.035 0.0599924491527619 0.009999997157739403
-                                                      rotation -0.7071077321975892 -0.0002846055141529202 0.7071057728982869 3.141031773183817
+                                                      rotation -0.7071077321975892 -0.0002846055141528092 0.7071057728982868 3.1410317731838164
                                                       children [
                                                         HingeJoint {
                                                           jointParameters HingeJointParameters {
@@ -811,7 +811,7 @@ DEF ECHOARM Robot {
                                                                 ]
                                                                 endPoint Solid {
                                                                   translation 0.13 0.008 -0.02
-                                                                  rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0943999999999994
+                                                                  rotation 0.5773489358556708 0.5773509358554486 -0.5773509358554486 2.0943999999999994
                                                                   children [
                                                                     Shape {
                                                                       appearance PBRAppearance {

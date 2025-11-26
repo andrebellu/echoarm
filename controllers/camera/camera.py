@@ -3,6 +3,18 @@ import cv2
 import numpy as np
 import mediapipe as mp
 import time
+import socket
+import select
+
+HOST = '127.0.0.1'
+PORT = 65432
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server_socket.bind((HOST, PORT))
+server_socket.listen()
+server_socket.setblocking(False)
+inputs = [server_socket]
+print(f">>> Camera Socket Server pronta su {HOST}:{PORT}")
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
@@ -86,6 +98,27 @@ def calculate_3d_coords(u, v, depth_image):
     return None
 
 while robot.step(timestep) != -1:
+    readable, _, _ = select.select(inputs, [], [], 0)
+    gui_trigger = None
+
+    for s in readable:
+        if s is server_socket:
+            conn, addr = s.accept()
+            conn.setblocking(False)
+            inputs.append(conn)
+            print(f">>> GUI collegata alla Camera: {addr}")
+        else:
+            try:
+                data = s.recv(1024)
+                if data:
+                    gui_trigger = data.decode('utf-8').strip()
+                else:
+                    inputs.remove(s)
+                    s.close()
+            except:
+                inputs.remove(s)
+                s.close()
+    
     image_data = camera.getImage()
     depth_data = range_finder.getRangeImage()
     if not image_data or not depth_data: continue
@@ -123,33 +156,41 @@ while robot.step(timestep) != -1:
             for p, data in SCANNED_COORDS.items():
                 print(f" - {p}: {data['xyz']}")
             print(">>> Premi 1-6 per inviare i comandi al robot.")
-
     else:
-        key = keyboard.getKey()
-        selected_part = None
-        
-        if key == ord('1'): selected_part = "TESTA"
-        elif key == ord('2'): selected_part = "TORACE"
-        elif key == ord('3'): selected_part = "ADDOME"
-        elif key == ord('4'): selected_part = "BRACCIO_SX"
-        elif key == ord('5'): selected_part = "BRACCIO_DX"
-        elif key == ord('6'): selected_part = "GAMBE"
+        cv2.putText(frame_bgr, "MODE: MEMORY (Socket/Key)", (10, 30), 
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
         
         for part, data in SCANNED_COORDS.items():
             u, v = data['uv']
             cv2.circle(frame_bgr, (u, v), 5, (255, 0, 0), -1)
-            if part == selected_part:
-                cv2.circle(frame_bgr, (u, v), 10, (0, 0, 255), -1)
-                cv2.putText(frame_bgr, f"SENDING: {part}", (u+15, v), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
-                
-                X, Y, Z = data['xyz']
-                message = f"{part},{X:.3f},{Y:.3f},{Z:.3f}"
-                emitter.send(message.encode('utf-8'))
-                print(f"Inviato comando memorizzato: {message}")
 
-        cv2.putText(frame_bgr, "MODE: MEMORY (Robot safe)", (10, 30), 
-                   cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+    target_part = None
+    
+    key = keyboard.getKey()
+    if key == ord('1'): target_part = "TESTA"
+    elif key == ord('2'): target_part = "TORACE"
+    elif key == ord('3'): target_part = "ADDOME"
+
+
+    if gui_trigger:
+        if gui_trigger in BODY_PARTS:
+            target_part = gui_trigger
+            print(f">>> Richiesta GUI ricevuta per: {target_part}")
+
+    if target_part:
+        if target_part in SCANNED_COORDS:
+            data = SCANNED_COORDS[target_part]
+            X, Y, Z = data['xyz']
+            
+            message = f"{target_part},{X:.3f},{Y:.3f},{Z:.3f}"
+            
+            emitter.send(message.encode('utf-8'))
+            
+            u, v = data['uv']
+            cv2.circle(frame_bgr, (u, v), 15, (0, 0, 255), 2)
+            print(f"Inviato comando al robot: {message}")
+        else:
+            print(f"ATTENZIONE: Coordinate per {target_part} non ancora rilevate!")
 
     cv2.imshow("Riconoscimento Corpo", frame_bgr)
     if cv2.waitKey(1) & 0xFF == ord('q'):
