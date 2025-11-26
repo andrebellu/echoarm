@@ -35,8 +35,8 @@ WorldInfo {
   title "echoarm_simulation"
 }
 Viewpoint {
-  orientation -0.33696966956013735 -0.08510590593057425 0.9376611469887554 3.606660989202466
-  position 3.3109872420893627 1.4253752932207864 4.160230300224246
+  orientation -0.20296357152106817 -0.0769501391746681 0.9761580121662738 3.8505169374398065
+  position 3.070487966364764 1.9777479807258904 2.759578368834536
 }
 TexturedBackground {
 }
@@ -183,6 +183,22 @@ Curtain {
   name "curtain(1)"
 }
 Solid {
+  translation 0 -0.63 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        metalness 0.5
+      }
+      geometry Mesh {
+        url [
+          "../protos/meshes/slider_guide.stl"
+        ]
+      }
+    }
+  ]
+  name "Slider_Guide"
+}
+Solid {
   translation 0 0 -0.13
   children [
     Shape {
@@ -191,7 +207,7 @@ Solid {
       }
       geometry Mesh {
         url [
-          "../protos/meshes/lettino_piantana.stl"
+          "../protos/meshes/lettino.stl"
         ]
       }
     }
@@ -215,14 +231,14 @@ Cow {
   scale 0.1
 }
 Television {
-  translation 1.28078 -1.0522 1.3
+  translation -1.35742 -1.06273 1.3
   rotation 0 0 -1 -0.523595307179586
   displayWidth 640
   displayHeight 480
   controller "tv"
 }
 Pole {
-  translation 1.28997 -1.06903 -0.6000000029999799
+  translation -1.36003 -1.06903 -0.6
 }
 Wall {
   translation -4.66 0.12 2.8
@@ -751,7 +767,7 @@ DEF ECHOARM Robot {
                                         ]
                                         endPoint Solid {
                                           translation 0.36003981633553667 0.035 -0.04999998414659172
-                                          rotation 0.5771976613402436 0.5771955411787425 0.5776574824121402 2.0939375257929127
+                                          rotation 0.5771976613402436 0.5771955411787425 0.5776574824121403 2.0939375257929127
                                           children [
                                             HingeJoint {
                                               jointParameters HingeJointParameters {
@@ -784,7 +800,7 @@ DEF ECHOARM Robot {
                                                     ]
                                                     endPoint Solid {
                                                       translation 0.035 0.0599924491527619 0.009999997157739403
-                                                      rotation -0.7071077321975892 -0.0002846055141528092 0.7071057728982868 3.1410317731838164
+                                                      rotation -0.7071077321975892 -0.0002846055141528647 0.7071057728982868 3.1410317731838164
                                                       children [
                                                         HingeJoint {
                                                           jointParameters HingeJointParameters {
@@ -811,7 +827,7 @@ DEF ECHOARM Robot {
                                                                 ]
                                                                 endPoint Solid {
                                                                   translation 0.13 0.008 -0.02
-                                                                  rotation 0.5773489358556708 0.5773509358554486 -0.5773509358554486 2.0943999999999994
+                                                                  rotation 0.5773489358556707 0.5773509358554486 -0.5773509358554486 2.0943999999999994
                                                                   children [
                                                                     Shape {
                                                                       appearance PBRAppearance {
